@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000dfd9-f69b-8000-06a9-01ef9001ef90_163415</versionUuid>
+    <rule>
+        <name>PrafulTest</name>
+        <uuid>_a-0000dfd9-f69b-8000-06a9-01ef9001ef90_163118</uuid>
+        <description>PrafulTest</description>
+        <parentUuid>_a-0000dfd9-f69b-8000-06a9-01ef9001ef90_141821</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#"SYSTEM_SYSRULES_formLayout_v1"(
+  label: "Employee Details",
+  instructions: "",
+  contents: {
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "",
+      contents: {
+        #"SYSTEM_SYSRULES_textField"(
+          label: "employee name",
+          labelPosition: "ADJACENT",
+          saveInto: ri!emp_name,
+          refreshAfter: "UNFOCUS",
+          validations: {}
+        )
+      }
+    ),
+    #"SYSTEM_SYSRULES_columnsLayout"(
+      columns: {
+        #"SYSTEM_SYSRULES_columnLayout"(
+          contents: {
+            #"SYSTEM_SYSRULES_sectionLayout_v1"(
+              label: "Personal Details",
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Address",
+                  labelPosition: "ABOVE",
+                  saveInto: ri!address,
+                  refreshAfter: "UNFOCUS",
+                  validations: {}
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Secondary Address",
+                  labelPosition: "ABOVE",
+                  saveInto: ri!secondary_address,
+                  refreshAfter: "UNFOCUS",
+                  validations: {}
+                ),
+                #"SYSTEM_SYSRULES_integerField"(
+                  label: "Phone Number",
+                  labelPosition: "ABOVE",
+                  saveInto: ri!phone,
+                  refreshAfter: "UNFOCUS",
+                  validations: {}
+                ),
+                #"SYSTEM_SYSRULES_dateField"(
+                  label: "Date of Birth",
+                  labelPosition: "JUSTIFIED",
+                  saveInto: ri!dob,
+                  validations: {}
+                ),
+                #"SYSTEM_SYSRULES_radioButtonField"(
+                  label: "Gender",
+                  labelPosition: "JUSTIFIED",
+                  choiceLabels: {"M", "F"},
+                  choiceValues: {"M", "F"},
+                  saveInto: ri!gender,
+                  choiceLayout: "COMPACT",
+                  validations: {}
+                )
+
+              }
+            ),
+            #"SYSTEM_SYSRULES_columnsLayout"(
+              columns: {
+                #"SYSTEM_SYSRULES_columnLayout"(
+                  contents: {}
+                ),
+                #"SYSTEM_SYSRULES_columnLayout"(
+                  contents: {}
+                ),
+                #"SYSTEM_SYSRULES_columnLayout"(
+                  contents: {}
+                )
+              }
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_columnLayout"(
+          contents: {
+            #"SYSTEM_SYSRULES_sectionLayout_v1"(
+              label: "Professional Details",
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Degree",
+                  labelPosition: "ABOVE",
+                  saveInto: ri!degree,
+                  refreshAfter: "UNFOCUS",
+                  validations: {}
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Company name",
+                  labelPosition: "ABOVE",
+                  saveInto: ri!cname,
+                  refreshAfter: "UNFOCUS",
+                  validations: {}
+                ),
+                #"SYSTEM_SYSRULES_integerField"(
+                  label: "No of months ",
+                  labelPosition: "ABOVE",
+                  saveInto: ri!exp,
+                  refreshAfter: "UNFOCUS",
+                  validations: {}
+                ),
+                #"SYSTEM_SYSRULES_paragraphField"(
+                  label: "About me ",
+                  labelPosition: "ABOVE",
+                  saveInto: ri!about,
+                  refreshAfter: "UNFOCUS",
+                  height: "MEDIUM",
+                  validations: {}
+                )
+              }
+            )
+          }
+        )
+      }
+    ),
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Identity Proofs",
+      contents: {
+        #"SYSTEM_SYSRULES_integerField"(
+          label: "Adhaar Card Number",
+          labelPosition: "ABOVE",
+          saveInto: ri!uid,
+          refreshAfter: "UNFOCUS",
+          validations: {}
+        ),
+        #"SYSTEM_SYSRULES_fileUploadField_v1"(
+          label: "Proof image",
+          labelPosition: "ABOVE",
+          saveInto: {},
+          validations: {}
+        )
+      }
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "Submit",
+         saveInto: ri!buttonaction,
+        style: "PRIMARY",
+        value: "submit"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "Cancel",
+        value: "cancel",
+        saveInto: ri!buttonaction,
+        style: "NORMAL",
+        skipValidation: true
+      )
+    }
+  ),
+  validations: {}
+)</definition>
+        <namedTypedValue>
+            <name>address</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>buttonaction</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>emp_name</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>secondary_address</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>phone</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>dob</name>
+            <type>
+                <name>date</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>gender</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>degree</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cname</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>exp</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>about</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>uid</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>image</name>
+            <type>
+                <name>PdfImage</name>
+                <namespace>urn:appian:ps:pdftools</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd9-f69b-8000-06a9-01ef9001ef90_163415"/>
+    </history>
+</contentHaul>

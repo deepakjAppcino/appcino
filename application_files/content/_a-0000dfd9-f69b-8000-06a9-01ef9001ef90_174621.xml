@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000dfd9-f69b-8000-06a9-01ef9001ef90_174813</versionUuid>
+    <rule>
+        <name>PRT_AddVehicleForm</name>
+        <uuid>_a-0000dfd9-f69b-8000-06a9-01ef9001ef90_174621</uuid>
+        <description>allow registrar to add new vehicle to fleet</description>
+        <parentUuid>_a-0000dfd9-f69b-8000-06a9-01ef9001ef90_166726</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#"SYSTEM_SYSRULES_formLayout_v1"(
+  label: "Add Vehicle to fleet",
+  instructions: "",
+  contents: {
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "",
+      contents: {
+        #"SYSTEM_SYSRULES_dropdownField"(
+          label: "Category",
+          labelPosition: "JUSTIFIED",
+          placeholderLabel: "--- Select a Value ---",
+          choiceLabels: {"Luxury", "Economy",
+            "Hatchback"},
+          choiceValues: {1, 2,
+            3},
+          saveInto: {},
+          validations: {}
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Make",
+          labelPosition: "JUSTIFIED",
+          saveInto: {},
+          refreshAfter: "UNFOCUS",
+          validations: {}
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Model",
+          labelPosition: "JUSTIFIED",
+          saveInto: {},
+          refreshAfter: "UNFOCUS",
+          validations: {}
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "License Plate Number",
+          labelPosition: "JUSTIFIED",
+          saveInto: {},
+          refreshAfter: "UNFOCUS",
+          validations: {}
+        ),
+        #"SYSTEM_SYSRULES_integerField"(
+          label: "Mileage",
+          labelPosition: "JUSTIFIED",
+          saveInto: {},
+          refreshAfter: "UNFOCUS",
+          validations: {}
+        ),
+        #"SYSTEM_SYSRULES_paragraphField"(
+          label: "Condition",
+          labelPosition: "ABOVE",
+          saveInto: {},
+          refreshAfter: "UNFOCUS",
+          height: "MEDIUM",
+          validations: {}
+        )
+      }
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "Submit",
+        saveInto: {},
+        style: "PRIMARY"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "Cancel",
+        value: true,
+        saveInto: ri!cancel,
+        style: "NORMAL",
+        skipValidation: true
+      )
+    }
+  ),
+  validations: {}
+)</definition>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>category</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd9-f69b-8000-06a9-01ef9001ef90_174813"/>
+    </history>
+</contentHaul>

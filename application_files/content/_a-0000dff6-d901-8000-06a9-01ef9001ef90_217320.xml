@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000dff6-d901-8000-06a9-01ef9001ef90_217637</versionUuid>
+    <rule>
+        <name>PRT_testVehicle</name>
+        <uuid>_a-0000dff6-d901-8000-06a9-01ef9001ef90_217320</uuid>
+        <description></description>
+        <parentUuid>_a-0000dfd9-f69b-8000-06a9-01ef9001ef90_166726</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+local!parts: #"_a-0000dff6-d901-8000-06a9-01ef9001ef90_217293"(),
+#"SYSTEM_SYSRULES_gridLayout"(
+headerCells: {
+#"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Part"),
+#"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Cost"),
+#"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Date"),
+#"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Type"),
+#"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Reason"),
+#"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "")
+},
+columnConfigs: {
+#"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE"),
+#"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "NARROW"),
+#"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE"),
+#"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE"),
+#"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE"),
+#"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "NARROW")
+},
+rows: #"SYSTEM_SYSRULES_forEach"(
+items: ri!request,
+expression: #"SYSTEM_SYSRULES_gridRowLayout"(
+id: fv!index,
+contents: {
+#"SYSTEM_SYSRULES_dropdownField"(
+label: "Part",
+labelPosition: "ABOVE",
+choiceLabels: local!parts.name,
+placeholderLabel: "­­­ Select a Value ­­­",
+choiceValues: local!parts.id,
+value: fv!item.partId,
+saveInto: fv!item.partId,
+required: true,
+validations: {}
+),
+#"SYSTEM_SYSRULES_textField"(
+label: "Repair Cost",
+labelPosition: "ABOVE",
+value: fv!item.repairCost,
+saveInto: fv!item.repairCost,
+refreshAfter: "UNFOCUS",
+required: true,
+validations: {}
+),
+#"SYSTEM_SYSRULES_dateField"(
+label: "Date Needed",
+labelPosition: "ABOVE",
+value: fv!item.dateNeeded,
+saveInto: fv!item.dateNeeded,
+validations: {}
+),
+#"SYSTEM_SYSRULES_dropdownField"(
+label: "Type of Maintenance",
+labelPosition: "ABOVE",
+choiceLabels: {"Routine", "Other"},
+placeholderLabel: "Select a type",
+choiceValues: {true, false},
+value: fv!item.isRoutine,
+saveInto: fv!item.isRoutine,
+required: true,
+choiceLayout: "STACKED",
+validations: {}
+),
+#"SYSTEM_SYSRULES_paragraphField"(
+label: "Description of Repair",
+labelPosition: "ABOVE",
+value: fv!item.reason,
+saveInto: fv!item.reason,
+refreshAfter: "UNFOCUS",
+height: "SHORT",
+validations: {}
+),
+#"SYSTEM_SYSRULES_imageField_v1"(
+size: "ICON",
+images: #"SYSTEM_SYSRULES_documentImage"(
+document: #"SYSTEM_SYSRULES_iconIndicator"(icon: "REMOVE"),
+link: #"SYSTEM_SYSRULES_dynamicLink"(
+value: fv!index,
+saveInto: {
+a!save(ri!request, remove(ri!request, save!value))
+}
+)
+)
+)
+}
+)
+),
+addRowLink: #"SYSTEM_SYSRULES_dynamicLink"(
+label: "Add Request",
+value: {
+'type!{urn:com:appian:types}PRT_request'},
+saveInto: {
+a!save(
+  ri!request,
+  append(
+    ri!request,
+    save!value
+  )
+)
+}
+
+)
+)
+)</definition>
+        <namedTypedValue>
+            <name>request</name>
+            <type>
+                <name>PRT_request?list</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dff6-d901-8000-06a9-01ef9001ef90_217637"/>
+    </history>
+</contentHaul>

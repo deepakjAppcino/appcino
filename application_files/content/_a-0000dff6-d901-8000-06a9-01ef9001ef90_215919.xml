@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e00c-16f9-8000-06a9-01ef9001ef90_492765</versionUuid>
+    <rule>
+        <name>PRT_newOrganisationRegistration</name>
+        <uuid>_a-0000dff6-d901-8000-06a9-01ef9001ef90_215919</uuid>
+        <description>new organisation registration</description>
+        <parentUuid>_a-0000dfd9-f69b-8000-06a9-01ef9001ef90_166726</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=load(
+  
+  #"SYSTEM_SYSRULES_formLayout_v1"(
+label: "Organisation Registration Form",
+instructions: "",
+contents: {
+  #"SYSTEM_SYSRULES_sectionLayout_v1"(
+    label: "Organisation Details",
+    contents: {
+      #"SYSTEM_SYSRULES_textField"(
+        label: "Organisation Name",
+        labelPosition: "JUSTIFIED",
+        value: ri!organisation.organisationName,
+        saveInto: ri!organisation.organisationName,
+        refreshAfter: "UNFOCUS",
+        required:true,
+        validations: {}
+      ),
+      #"SYSTEM_SYSRULES_integerField"(
+        label: "Year",
+        labelPosition: "JUSTIFIED",
+        value: ri!organisation.year,
+        saveInto: ri!organisation.year,
+        refreshAfter: "UNFOCUS",
+        required:true,
+        validations: {}
+      ),
+      #"SYSTEM_SYSRULES_textField"(
+        label: "Location",
+        labelPosition: "JUSTIFIED",
+        value:ri!organisation.location,
+        saveInto: ri!organisation.location,
+        refreshAfter: "UNFOCUS",
+        required:true,
+        validations: {}
+      )
+    }
+  ),
+  #"SYSTEM_SYSRULES_sectionLayout_v1"(
+    label: "Employee Details",
+    contents: {
+      #"SYSTEM_SYSRULES_gridLayout"(
+        label: "Label",
+        labelPosition: "ABOVE",
+        headerCells: {
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Employee Name"),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+            label: "Age"
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+            label: "Email"
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+            label: "Phone Number"
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+            label: "Date of Birth"
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+            label: "Department"
+          )
+        },
+        columnConfigs: {
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+            width: "DISTRIBUTE",
+            weight: 3
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+            width: "DISTRIBUTE",
+            weight: 3
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+            width: "DISTRIBUTE",
+            weight: 3
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+            width: "DISTRIBUTE",
+            weight: 3
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+            width: "DISTRIBUTE",
+            weight: 3
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+            width: "DISTRIBUTE"
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+            width: "DISTRIBUTE",
+            weight: 3
+          )
+        },
+        rows: #"SYSTEM_SYSRULES_forEach"(items: ri!request, 
+        expression: #"SYSTEM_SYSRULES_gridRowLayout"(id:fv!index, 
+        contents: {
+          #"SYSTEM_SYSRULES_textField"(label:"Employee Name",
+          labelPosition: "ABOVE",
+          required: true,
+          value: fv!item.Employee,
+       saveInto: fv!item.Employee,
+       validations: {}
+          ),
+          #"SYSTEM_SYSRULES_integerField"(
+        label: "Age",
+        labelPosition: "ABOVE",
+        required: true,
+        value: fv!item.Age,
+        saveInto:fv!item.Age,
+        refreshAfter: "UNFOCUS",
+        validations: {}
+      ),
+      #"SYSTEM_SYSRULES_textField"(label: "Email",
+      labelPosition: "ABOVE",
+      required: true,
+      value: fv!item.Email,
+      saveInto:fv!item.Email,
+      refreshAfter: "UNFOCUS",
+      validations: {}),
+      #"SYSTEM_SYSRULES_integerField"(label:"Phone Number",
+      labelPosition: "ABOVE",
+      required: true,
+      value: fv!item.PhNumber,
+      saveInto: fv!item.PhNumber,
+      refreshAfter: "UNFOCUS",
+      validations: {}),
+      #"SYSTEM_SYSRULES_dateField"(label:"Date of Birth",
+      labelPosition: "ABOVE",
+      required: true,
+      value: fv!item.DOB,
+      saveInto: fv!item.DOB,
+      refreshAfter: "UNFOCUS",
+      validations: {}
+      ),
+        #"SYSTEM_SYSRULES_textField"(label: "Department",
+      labelPosition: "ABOVE",
+      required: true,
+      value: fv!item.Department,
+      saveInto:fv!item.Department,
+      refreshAfter: "UNFOCUS",
+      validations: {})
+        })),
+         
+addRowLink: #"SYSTEM_SYSRULES_dynamicLink"( label: "Add Request", 
+                           value: append(ri!request, 
+                           'type!{urn:com:appian:types}PRT_employee'()), 
+                           saveInto: ri!request )
+        
+        
+       
+      )
+    }
+      
+  )
+},
+buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+  primaryButtons: {
+    #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+      label: "Generate pdf",
+      value: true,
+      saveInto: ri!buttonAction,
+      style: "PRIMARY"
+    )
+  }
+ 
+),
+validations: {}
+)
+)</definition>
+        <namedTypedValue>
+            <name>request</name>
+            <type>
+                <name>PRT_employee?list</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>buttonAction</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>organisation</name>
+            <type>
+                <name>PRT_organisation</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dff6-d901-8000-06a9-01ef9001ef90_221464"/>
+        <historyInfo versionUuid="_a-0000e00c-16f9-8000-06a9-01ef9001ef90_492765"/>
+    </history>
+</contentHaul>
