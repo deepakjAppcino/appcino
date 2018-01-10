@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><applicationHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <versionUuid>_a-0000e00c-16f9-8000-06a9-01ef9001ef90_518720</versionUuid>
+    <versionUuid>_a-0000e00c-16f9-8000-06a9-01ef9001ef90_486292</versionUuid>
     <application>
         <name>Integration</name>
         <uuid>_a-0000dfff-8511-8000-06a9-01ef9001ef90_401938</uuid>
@@ -63,7 +63,6 @@
                         <uuid>_a-0000e006-c1a1-8000-06a9-01ef9001ef90_449818</uuid>
                         <uuid>_a-0000e006-c1a1-8000-06a9-01ef9001ef90_457092</uuid>
                         <uuid>_a-0000e006-c1a1-8000-06a9-01ef9001ef90_457683</uuid>
-                        <uuid>_a-0000e00c-16f9-8000-06a9-01ef9001ef90_518715</uuid>
                     </uuids>
                 </item>
                 <item>
@@ -290,6 +289,5 @@
     </roleMap>
     <history>
         <historyInfo versionUuid="_a-0000e00c-16f9-8000-06a9-01ef9001ef90_486292"/>
-        <historyInfo versionUuid="_a-0000e00c-16f9-8000-06a9-01ef9001ef90_518720"/>
     </history>
-</applicationHaul><!--updated on 2018-01-10T19:27:12.033-->
+</applicationHaul><!--updated on 2018-01-10T19:33:53.524-->
