@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:IntegrationPraful"
+  xmlns:tns="urn:com:appian:types:IntegrationPraful" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="Bitrix24">
+    <xsd:sequence>
+      <xsd:element name="taskId" nillable="true" type="xsd:int"/>
+      <xsd:element name="title" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="description" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="createdBy" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="deadline" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="startDate" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="endDate" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="responsibleName" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

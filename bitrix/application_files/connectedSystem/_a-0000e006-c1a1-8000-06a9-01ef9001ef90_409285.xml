@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<connectedSystemHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e006-c1a1-8000-06a9-01ef9001ef90_411973</versionUuid>
+    <connectedSystem>
+        <name>BitRixSystem24</name>
+        <uuid>_a-0000e006-c1a1-8000-06a9-01ef9001ef90_409285</uuid>
+        <description>BitRix24</description>
+        <parentUuid>SYSTEM_COMMUNITY_ROOT</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <sharedConfigParameters>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <url xsi:type="xsd:string"/>
+                <authType xsi:type="xsd:string">OAuth 2.0</authType>
+                <authDetails xsi:type="a:Dictionary">
+                    <clientSecret xsi:type="a:EncryptedText"/>
+                    <clientId xsi:type="xsd:string"/>
+                    <tokenUrl xsi:type="xsd:string">https://b24-8cvx17.bitrix24.com/oauth/token/</tokenUrl>
+                    <authUrl xsi:type="xsd:string">https://b24-8cvx17.bitrix24.com/oauth/authorize</authUrl>
+                    <scope xsi:type="xsd:string">root_readwrite</scope>
+                </authDetails>
+            </a:Dictionary>
+        </sharedConfigParameters>
+        <logoChoice></logoChoice>
+    </connectedSystem>
+    <roleMap public="true">
+        <role inherit="false" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e006-c1a1-8000-06a9-01ef9001ef90_411973"/>
+    </history>
+</connectedSystemHaul>

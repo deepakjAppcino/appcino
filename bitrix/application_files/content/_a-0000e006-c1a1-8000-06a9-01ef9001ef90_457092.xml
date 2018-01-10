@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e00c-16f9-8000-06a9-01ef9001ef90_478730</versionUuid>
+    <rule>
+        <name>BitrixViewTaskInterface</name>
+        <uuid>_a-0000e006-c1a1-8000-06a9-01ef9001ef90_457092</uuid>
+        <description>BitrixViewTaskInterface</description>
+        <parentUuid>_a-0000dfff-8511-8000-06a9-01ef9001ef90_403013</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=load(
+  
+  local!files: #"_a-0000e006-c1a1-8000-06a9-01ef9001ef90_410267"(#"_a-0000e006-c1a1-8000-06a9-01ef9001ef90_417362"),
+  local!a:1,
+  
+  local!read1:false,
+  local!read2:true,
+  #"SYSTEM_SYSRULES_formLayout_v1"(label: "Task Management",
+  contents: {
+    #"SYSTEM_SYSRULES_radioButtonField"(
+          label: "",
+          labelPosition: "JUSTIFIED",
+          choiceLabels: {"Delete", "Update","Create"},
+          choiceValues: {1,2,3},
+          value:local!a,
+          saveInto: {
+            local!a,
+            if(
+              tointeger(local!a)=3,
+              a!save(local!files,append(local!files,{ID:0})),
+              a!save(local!files,remove(local!files,whereContains(0,tointeger(index(local!files,"ID",{})))))
+            )
+            },
+                 
+          choiceLayout: "COMPACT",
+          validations: {}
+        ),
+        
+  #"SYSTEM_SYSRULES_gridLayout"(
+        label:"Task Details",
+       totalCount: count(#"_a-0000e006-c1a1-8000-06a9-01ef9001ef90_410267"(#"_a-0000e006-c1a1-8000-06a9-01ef9001ef90_417362").ID),
+        headerCells: {
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label:"Task Id",showwhen: or(local!a=1,local!a=2)),
+          
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Task Title" ),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Description" ),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Deadline" ),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Start Date" ),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "End Date" ),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Created By" ),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Responsible Name" ,showwhen: or(local!a=1,local!a=2)),
+          /* For the "Remove" column */
+         #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(label: "Want to Delete/ Update",
+            showwhen: or(local!a=1,local!a=2) )
+         
+          
+        },
+        /* Only needed when some columns need to be narrow */
+        columnConfigs: {
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE", weight:3,showwhen: or(local!a=1,local!a=2) ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE", weight:3 ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE", weight:3 ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE", weight:3 ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE", weight:3 ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE", weight:3 ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE", weight:3 ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE", weight:3 ,showwhen: or(local!a=1,local!a=2)),
+         #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(width: "DISTRIBUTE", weight:3,
+             showwhen: or(local!a=1,local!a=2) )
+          
+        },
+        rows: #"SYSTEM_SYSRULES_forEach"(
+          items: local!files,
+          expression: #"SYSTEM_SYSRULES_gridRowLayout"(
+            id: fv!index,
+            contents: {
+              
+              #"SYSTEM_SYSRULES_integerField"(
+                label:"Task Id",
+                value: local!files[fv!index].ID,
+                saveInto: ri!taskProperty.taskId,
+                showwhen: or(local!a=1,local!a=2),
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label:"Task Title",
+                value: local!files[fv!index].TITLE,
+                saveInto: ri!taskProperty.title,
+                readOnly: if(
+                  or(and(local!a=2,tointeger(local!files[fv!index].ID)=ri!taskProperty.taskId),
+                  and(local!a=3,tointeger(local!files[fv!index].ID)=0)),
+                  local!read1,
+                  local!read2)
+              ),
+                #"SYSTEM_SYSRULES_textField"(
+                label:"Description",
+                value: local!files[fv!index].DESCRIPTION,
+                saveInto: ri!taskProperty.description,
+                readOnly: if(
+                  or(and(local!a=2,tointeger(local!files[fv!index].ID)=ri!taskProperty.taskId),
+                  and(local!a=3,tointeger(local!files[fv!index].ID)=0)),
+                  local!read1,
+                  local!read2)
+              ),
+               #"SYSTEM_SYSRULES_dateTimeField"(
+                label:"Deadline",
+                value: local!files[fv!index].DEADLINE,
+                saveInto: ri!taskProperty.deadline,
+                readOnly:if(
+                  or(and(local!a=2,tointeger(local!files[fv!index].ID)=ri!taskProperty.taskId),
+                  and(local!a=3,tointeger(local!files[fv!index].ID)=0)),
+                  local!read1,
+                  local!read2)
+              ),
+               #"SYSTEM_SYSRULES_dateTimeField"(
+                label:"Start Date",
+                value: local!files[fv!index].START_DATE_PLAN,
+                saveInto: ri!taskProperty.startDate,
+                readOnly: if(
+                  or(and(local!a=2,tointeger(local!files[fv!index].ID)=ri!taskProperty.taskId),
+                  and(local!a=3,tointeger(local!files[fv!index].ID)=0)),
+                  local!read1,
+                  local!read2)
+              ),
+                #"SYSTEM_SYSRULES_dateTimeField"(
+                label:"End Date",
+                value:local!files[fv!index].END_DATE_PLAN,
+                saveInto:ri!taskProperty.endDate ,
+                readOnly:if(
+                  or(and(local!a=2,tointeger(local!files[fv!index].ID)=ri!taskProperty.taskId),
+                  and(local!a=3,tointeger(local!files[fv!index].ID)=0)),
+                  local!read1,
+                  local!read2)
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label:"Created By",
+                value: local!files[fv!index].CREATED_BY_NAME,
+                saveInto: ri!taskProperty.createdBy,
+                readOnly: local!read2
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label:"Responsible Name",
+                value: local!files[fv!index].RESPONSIBLE_NAME,
+                showwhen: or(local!a=1,local!a=2),
+                saveInto:ri!taskProperty.responsibleName ,
+                readOnly: local!read2
+              ),
+             #"SYSTEM_SYSRULES_checkboxField"(
+          label: "",
+          labelPosition: "JUSTIFIED",
+          choiceLabels: "",
+          choiceValues: local!files[fv!index].ID,
+          saveInto: ri!taskProperty.taskId,
+          showwhen: or(local!a=1,local!a=2),
+          choiceLayout: "COMPACT"
+         
+        )
+             
+              
+            }
+          )
+        ),
+        addRowlink: #"SYSTEM_SYSRULES_dynamicLink"(
+          label: "",
+          value: {
+            startDate: today() + 1
+          },
+          saveInto: {
+            a!save(local!files, append(local!files, save!value)),
+            a!save(ri!buttonAction,3)
+          }
+        )
+      )},
+      buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+  primaryButtons: {
+    #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+      label: "LOGOUT",
+      value: 4,
+      saveInto: ri!buttonAction,
+      style: "PRIMARY",
+      skipValidation: true
+    )
+  },
+  
+  secondaryButtons:{
+    if(local!a=1, 
+    #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+      label: "Delete",
+      value: 1,
+      saveInto: ri!buttonAction
+    ),if(local!a=2,#"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+      label: "Update",
+      value: 2,
+      saveInto: ri!buttonAction
+    ),#"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+      label: "Create",
+      value: 3,
+      saveInto: ri!buttonAction
+    )))
+    
+  }
+ 
+)
+ 
+  )
+  
+)
+
+
+
+</definition>
+        <namedTypedValue>
+            <name>buttonAction</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>taskProperty</name>
+            <type>
+                <name>Bitrix24</name>
+                <namespace>urn:com:appian:types:IntegrationPraful</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>prafuls</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e00c-16f9-8000-06a9-01ef9001ef90_478730"/>
+    </history>
+</contentHaul>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e006-c1a1-8000-06a9-01ef9001ef90_442689</versionUuid>
+    <outboundIntegration>
+        <name>BitRixSystem24Post</name>
+        <uuid>fdd27f0d-d175-492d-a8a8-0f09d7446b8d</uuid>
+        <description>post </description>
+        <parentUuid>_a-0000dfff-8511-8000-06a9-01ef9001ef90_403013</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition></definition>
+        <namedTypedValue>
+            <name>taskProperty</name>
+            <type>
+                <name>Bitrix24</name>
+                <namespace>urn:com:appian:types:IntegrationPraful</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>onSuccess</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>onError</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr>{
+deferredRuleInputs: {
+    onSuccess: {
+      "fv!result": 'type!{http://www.appian.com/ae/types/2009}Dictionary'
+    },
+    onError: {
+      "fv!result": 'type!{http://www.appian.com/ae/types/2009}Dictionary',
+      "fv!error": 'type!{http://www.appian.com/ae/types/2009}Dictionary',
+      "fv!connectedSystem": 'type!{http://www.appian.com/ae/types/2009}ConnectedSystem'
+    }
+  }
+}</metadataExpr>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <sharedConfigParameters>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <url xsi:type="a:Expression">"https://b24-8cvx17.bitrix24.com/rest/task.item.add?auth="&amp;#"_a-0000e006-c1a1-8000-06a9-01ef9001ef90_417362"</url>
+                <authType xsi:type="xsd:string">None</authType>
+                <authDetails xsi:type="xsd:string"/>
+            </a:Dictionary>
+        </sharedConfigParameters>
+        <configParameters>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <contentType xsi:type="xsd:string">application/json</contentType>
+                <method xsi:type="xsd:string">POST</method>
+                <headers xsi:type="a:NameValue?list"/>
+                <parameters xsi:type="a:NameValue?list">
+                    <item>
+                        <a:name>fields[TITLE]</a:name>
+                        <a:value xsi:type="a:Expression">ri!taskProperty.title</a:value>
+                    </item>
+                    <item>
+                        <a:name>fields[RESPONSIBLE_ID]</a:name>
+                        <a:value xsi:type="xsd:string">1</a:value>
+                    </item>
+                    <item>
+                        <a:name>fields[DEADLINE]</a:name>
+                        <a:value xsi:type="a:Expression">ri!taskProperty.deadline</a:value>
+                    </item>
+                    <item>
+                        <a:name>fields[DESCRIPTION]</a:name>
+                        <a:value xsi:type="a:Expression">ri!taskProperty.description</a:value>
+                    </item>
+                    <item>
+                        <a:name>fields[START_DATE_PLAN]</a:name>
+                        <a:value xsi:type="a:Expression">ri!taskProperty.startDate</a:value>
+                    </item>
+                    <item>
+                        <a:name>fields[END_DATE_PLAN]</a:name>
+                        <a:value xsi:type="a:Expression">ri!taskProperty.endDate</a:value>
+                    </item>
+                </parameters>
+                <body xsi:nil="true" xsi:type="a:Expression"/>
+            </a:Dictionary>
+        </configParameters>
+        <isWrite>true</isWrite>
+        <integrationType>system.http</integrationType>
+        <connectedSystemUuid></connectedSystemUuid>
+        <isConnectedSystemConnectionOptionSelected>false</isConnectedSystemConnectionOptionSelected>
+        <integrationOutputs>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <outputs xsi:type="a:IntegrationOutput?list"/>
+            </a:Dictionary>
+        </integrationOutputs>
+    </outboundIntegration>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e006-c1a1-8000-06a9-01ef9001ef90_442689"/>
+    </history>
+</contentHaul>

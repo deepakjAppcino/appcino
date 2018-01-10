@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e006-c1a1-8000-06a9-01ef9001ef90_445462</versionUuid>
+    <rule>
+        <name>BitrixInterface</name>
+        <uuid>_a-0000e006-c1a1-8000-06a9-01ef9001ef90_410239</uuid>
+        <description>interface for bitrix integration</description>
+        <parentUuid>_a-0000dfff-8511-8000-06a9-01ef9001ef90_403013</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v1"(
+  label: "Task Generation and View",
+  contents:{
+    #"SYSTEM_SYSRULES_gridField"(
+      label: "Task Details",
+      totalCount: 20,
+      columns: {
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Task Id",
+          data:#"SYSTEM_SYSRULES_fromJson"(#"da8449cc-918f-4c19-aadc-d35d3a7690db"(auth_code: #"_a-0000e006-c1a1-8000-06a9-01ef9001ef90_417362").result.body).result.ID,
+          alignment: "LEFT"
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Task Title",
+          data:#"SYSTEM_SYSRULES_fromJson"(#"da8449cc-918f-4c19-aadc-d35d3a7690db"(auth_code: #"_a-0000e006-c1a1-8000-06a9-01ef9001ef90_417362").result.body).result.TITLE,
+          alignment: "LEFT"
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Description",
+          data:#"SYSTEM_SYSRULES_fromJson"(#"da8449cc-918f-4c19-aadc-d35d3a7690db"(auth_code: #"_a-0000e006-c1a1-8000-06a9-01ef9001ef90_417362").result.body).result.DESCRIPTION ,
+          alignment: "LEFT"
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Deadline",
+          data:#"SYSTEM_SYSRULES_fromJson"(#"da8449cc-918f-4c19-aadc-d35d3a7690db"(auth_code: #"_a-0000e006-c1a1-8000-06a9-01ef9001ef90_417362").result.body).result.DEADLINE,
+          alignment: "LEFT"
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "START_DATE_PLAN",
+          data:#"SYSTEM_SYSRULES_fromJson"(#"da8449cc-918f-4c19-aadc-d35d3a7690db"(auth_code: #"_a-0000e006-c1a1-8000-06a9-01ef9001ef90_417362").result.body).result.START_DATE_PLAN,
+          alignment: "LEFT"
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "END_DATE_PLAN",
+          data:#"SYSTEM_SYSRULES_fromJson"(#"da8449cc-918f-4c19-aadc-d35d3a7690db"(auth_code: #"_a-0000e006-c1a1-8000-06a9-01ef9001ef90_417362").result.body).result.END_DATE_PLAN,
+          alignment: "LEFT"
+        ),
+         #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Created by",
+          data:#"SYSTEM_SYSRULES_fromJson"(#"da8449cc-918f-4c19-aadc-d35d3a7690db"(auth_code: #"_a-0000e006-c1a1-8000-06a9-01ef9001ef90_417362").result.body).result.CREATED_BY_NAME,
+          alignment: "LEFT"
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Responsible Person Name",
+          data:#"SYSTEM_SYSRULES_fromJson"(#"da8449cc-918f-4c19-aadc-d35d3a7690db"(auth_code: #"_a-0000e006-c1a1-8000-06a9-01ef9001ef90_417362").result.body).result.RESPONSIBLE_NAME,
+          alignment: "LEFT"
+        )
+      },
+      value: #"SYSTEM_SYSRULES_pagingInfo"(
+        startIndex: 1,
+        batchSize: 20,
+        sort: #"SYSTEM_SYSRULES_sortInfo"(
+          field: "name",
+          ascending: true
+        )
+      )
+      ),
+    
+     #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "Add New Task",
+        value:"Add",
+        saveInto:ri!buttonAction,
+        style: "PRIMARY",
+        skipValidation: true
+      )
+    },
+    
+    secondaryButtons:{
+       #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "LOGOUT",
+        value:"logout",
+        saveInto:ri!buttonAction,
+        skipValidation: true
+        
+      )
+    }
+    
+  ),
+     #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Deletion of Task",
+      contents: {
+        #"SYSTEM_SYSRULES_integerField"(
+          label:"TaskId",
+          required:true,
+          labelPosition:"JUSTIFIED",
+          value:ri!taskId,
+          saveInto: ri!taskId
+        ),
+        #"SYSTEM_SYSRULES_ButtonLayout"(
+   
+    
+    primaryButtons:{
+       #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "Delete",
+        value:"delete",
+        style: "PRIMARY",
+        saveInto:ri!buttonAction,
+        skipValidation: true
+        
+      )
+    }
+    
+  )
+      },
+      isCollapsible: true,
+      isInitiallyCollapsed: true
+    ),
+     #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Updation of Task",
+      contents: {
+        #"SYSTEM_SYSRULES_integerField"(
+          label:"TaskId",
+          required:true,
+          labelPosition:"JUSTIFIED",
+          value:ri!taskId,
+          saveInto: ri!taskId
+        ),
+        #"SYSTEM_SYSRULES_ButtonLayout"(
+   
+    
+    primaryButtons:{
+       #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "Update",
+        value:"update",
+        style: "PRIMARY",
+        saveInto:ri!buttonAction,
+        skipValidation: true
+        
+      )
+    }
+    
+  )
+      },
+      isCollapsible: true,
+      isInitiallyCollapsed: true
+    )
+  
+  }
+)    </definition>
+        <namedTypedValue>
+            <name>buttonAction</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>taskId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e006-c1a1-8000-06a9-01ef9001ef90_445462"/>
+    </history>
+</contentHaul>

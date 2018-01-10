@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<connectedSystemHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000dfff-8511-8000-06a9-01ef9001ef90_403101</versionUuid>
+    <connectedSystem>
+        <name>Bitrix24</name>
+        <uuid>_a-0000dfff-8511-8000-06a9-01ef9001ef90_402280</uuid>
+        <description>Bitrix24</description>
+        <parentUuid>SYSTEM_COMMUNITY_ROOT</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <sharedConfigParameters>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <url xsi:type="xsd:string"/>
+                <authType xsi:type="xsd:string">OAuth 2.0</authType>
+                <authDetails xsi:type="a:Dictionary">
+                    <clientSecret xsi:type="a:EncryptedText"/>
+                    <clientId xsi:type="xsd:string"/>
+                    <tokenUrl xsi:type="xsd:string">https://b24-dqb0i1.bitrix24.com/rest/1/9hygwxqr05wadw4u/profile/</tokenUrl>
+                    <authUrl xsi:type="xsd:string">https://b24-dqb0i1.bitrix24.com/rest/1/9hygwxqr05wadw4u/profile/</authUrl>
+                    <scope xsi:type="xsd:string">root_readwrite</scope>
+                </authDetails>
+            </a:Dictionary>
+        </sharedConfigParameters>
+        <logoChoice></logoChoice>
+    </connectedSystem>
+    <roleMap public="true">
+        <role inherit="false" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfff-8511-8000-06a9-01ef9001ef90_403101"/>
+    </history>
+</connectedSystemHaul>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e006-c1a1-8000-06a9-01ef9001ef90_457955</versionUuid>
+    <rule>
+        <name>BitrixAddNewTaskInterface</name>
+        <uuid>_a-0000e006-c1a1-8000-06a9-01ef9001ef90_457683</uuid>
+        <description></description>
+        <parentUuid>_a-0000dfff-8511-8000-06a9-01ef9001ef90_403013</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#"SYSTEM_SYSRULES_formLayout_v1"(
+  label: "Task Creation",
+  
+  contents: {
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label:"",
+      contents: {
+        #"SYSTEM_SYSRULES_textField"(
+          label:"Task Name",
+          required: true,
+          labelPosition:"JUSTIFIED",
+          value:ri!taskProperty.title,
+          saveInto:ri!taskProperty.title
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label:"Description",
+          labelPosition:"JUSTIFIED",
+          value:ri!taskProperty.description,
+          saveInto:ri!taskProperty.description
+        ),
+        #"SYSTEM_SYSRULES_dateTimeField"(
+          label:"Start date",
+          labelPosition: "JUSTIFIED",
+          required:true,
+          value:ri!taskProperty.startDate,
+          saveInto:ri!taskProperty.startDate
+        ),
+          #"SYSTEM_SYSRULES_dateTimeField"(
+          label:"End date",
+          labelPosition: "JUSTIFIED",
+          required:true,
+          value:ri!taskProperty.endDate,
+          saveInto:ri!taskProperty.endDate
+        ),
+        #"SYSTEM_SYSRULES_dateTimeField"(
+          label:"Deadline",
+          labelPosition: "JUSTIFIED",
+          
+          value:ri!taskProperty.deadline,
+          saveInto:ri!taskProperty.deadline
+        )
+      },
+      validations: {}
+    )
+  },
+ buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "submit",
+        value:"submit",
+        saveInto:ri!buttonActionActivity,
+        style: "PRIMARY"
+      )
+    },
+    secondaryButtons:{
+       #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "cancel",
+        value:"cancel",
+        saveInto:ri!buttonActionActivity,
+        skipValidation: true
+        
+      )
+    }
+    
+  ),
+  validations: {}
+)</definition>
+        <namedTypedValue>
+            <name>taskProperty</name>
+            <type>
+                <name>Bitrix24</name>
+                <namespace>urn:com:appian:types:IntegrationPraful</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>buttonActionActivity</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>prafuls</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e006-c1a1-8000-06a9-01ef9001ef90_457955"/>
+    </history>
+</contentHaul>
